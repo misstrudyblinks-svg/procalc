@@ -70,3 +70,10 @@ body[data-view="login"] .topbar{height:72px}
   body[data-view="calculator"] .profile small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100vw - 95px)}
   body[data-view="calculator"] .topbar .brand-logo{width:36px;height:36px}
 }
+/* Phase 2 profile-header refinement */
+.account-avatar-button{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;font:700 15px var(--display);color:#fff;background:linear-gradient(135deg,#8b65f5,#5d92ff);border:2px solid #ffffff18;box-shadow:0 0 0 4px #8b65f520,0 8px 24px #7559ef40;transition:transform .2s,box-shadow .2s}
+#navLogin:has(.account-avatar-button){padding:7px;background:transparent;border:0;box-shadow:none;min-width:0}
+#navLogin:has(.account-avatar-button):hover .account-avatar-button{transform:translateY(-2px) scale(1.05);box-shadow:0 0 0 5px #8b65f530,0 10px 30px #7559ef55}
+.profile-modal-logout{width:100%;margin-top:12px;padding:12px;border-radius:11px;border:1px solid #ff748a35;background:#ff748a10;color:#ff9aaa;font-weight:600;cursor:pointer;transition:.2s}
+.profile-modal-logout:hover{background:#ff748a20;border-color:#ff748a70}
+@media(max-width:700px){body[data-view="calculator"] .side-panel{display:none!important}body[data-view="calculator"] .calc-main{padding-top:22px}body[data-view="calculator"] .topbar{justify-content:space-between}body[data-view="calculator"] #navLogin{margin-left:auto;margin-right:0}}
