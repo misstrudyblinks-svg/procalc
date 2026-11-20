@@ -15,3 +15,58 @@ body[data-view="calculator"] .topbar{height:64px;padding-left:24px;padding-right
 body[data-view="calculator"] .nav-cta{margin-left:auto}
 body[data-view="login"] .topbar{height:72px}
 @media(max-width:700px){body[data-view="calculator"] .topbar{height:58px;padding:0 16px}body[data-view="login"] .topbar{height:64px;padding:0 20px}}
+
+/* Phase 2 enhancements: scientific tools, personal statistics, profile settings */
+.header-actions{display:flex;align-items:center;gap:10px}
+.stats-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:-8px 0 22px}
+.stat-card{background:linear-gradient(145deg,#151d2d,#101624);border:1px solid var(--line);border-radius:14px;padding:15px 17px;min-width:0;transition:transform .2s,border-color .2s}
+.stat-card:hover{transform:translateY(-3px);border-color:#927bff55}
+.stat-card small{display:block;color:#78859c;font-size:9px;letter-spacing:1.2px;font-weight:700;margin-bottom:7px}
+.stat-card strong{font:600 23px var(--display);color:#e7eaf5}
+.profile-open{background:#8d78ff13;border:1px solid #9277ff35;border-radius:10px;color:#b8a7ff;padding:10px 13px;font-size:11px;cursor:pointer;transition:.2s}
+.profile-open:hover{background:#8d78ff25;border-color:#9277ff70;transform:translateY(-1px)}
+.calc-header-actions{display:flex;align-items:center;gap:8px}
+.mode-toggle{border:1px solid #9277ff35;background:#9277ff10;color:#a995ff;padding:9px 11px;border-radius:9px;font-size:10px;cursor:pointer;transition:.2s}
+.mode-toggle:hover,.mode-toggle.active{background:#9277ff25;border-color:#9277ff80;color:#c9bcff}
+.scientific-keys[hidden]{display:none!important}
+.scientific-keys{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding-top:4px;animation:scienceIn .25s ease}
+@keyframes scienceIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.key.science{min-height:43px;background:#18283b;border-color:#38516c;color:#91c5ff;font-size:14px}
+.key.science:hover{background:#223951;border-color:#6e9dc9}
+.forgot-link{display:block;margin:8px 0 0 auto;background:none;border:0;color:#a995ff;font-size:11px;cursor:pointer;padding:4px 0}
+.forgot-link:hover{color:#c7b9ff;text-decoration:underline}
+.profile-modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
+.profile-modal.open{display:flex;animation:modalFade .2s ease}
+.profile-modal-backdrop{position:absolute;inset:0;background:#03060cbb;backdrop-filter:blur(8px)}
+.profile-modal-card{position:relative;width:min(100%,420px);padding:30px;background:linear-gradient(145deg,#171f30,#101622);border:1px solid #ffffff14;border-radius:22px;box-shadow:0 30px 90px #0008;animation:cardIn .3s ease}
+.profile-modal-card h2{font:600 26px var(--display);margin:10px 0 22px}
+.profile-close{position:absolute;right:16px;top:15px;border:1px solid #ffffff15;background:#ffffff08;color:#aab4c8;border-radius:9px;width:34px;height:34px;font-size:21px;cursor:pointer}
+.profile-modal-avatar{width:55px;height:55px;border-radius:50%;display:grid;place-items:center;font:700 20px var(--display);color:#fff;background:linear-gradient(135deg,#8768ed,#5b92ff);margin:0 0 20px;box-shadow:0 9px 28px #7660ed40}
+.profile-modal-card label{display:block;color:#b7c0d3;font-size:11px;margin:15px 0 7px}
+.profile-modal-card input{width:100%;box-sizing:border-box;border:1px solid #ffffff12;background:#0d1320;border-radius:10px;padding:12px;color:#eef1fb;outline:none}
+.profile-modal-card input:focus{border-color:#927bff90;box-shadow:0 0 0 3px #927bff12}
+.profile-modal-card input[readonly]{color:#75839a;background:#0a101a}
+.profile-help{color:#78859c;font-size:10px;line-height:1.6;margin:9px 0 20px}
+.profile-modal-card .primary-btn{width:100%}
+.profile-modal.open .profile-modal-card{transform:translateY(0)}
+@media(max-width:900px){.stats-strip{gap:8px}.stat-card{padding:13px}.stat-card strong{font-size:20px}}
+@media(max-width:700px){.header-actions{gap:7px}.profile-open{padding:9px 10px;font-size:10px}.stats-strip{margin:0 0 16px;gap:7px}.stat-card{padding:11px 9px;border-radius:11px}.stat-card small{font-size:8px;letter-spacing:.6px;line-height:1.35;min-height:21px}.stat-card strong{font-size:18px}.calc-header-actions{gap:6px}.mode-toggle{font-size:9px;padding:8px 9px}.scientific-keys{gap:7px}.key.science{min-height:42px;font-size:13px}}
+@media(max-width:380px){.stats-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.stat-card small{font-size:7px}.stat-card strong{font-size:16px}.profile-open{font-size:9px;padding:8px}.mode-toggle{padding:7px;font-size:8px}}
+
+.forgot-link[hidden]{display:none!important}
+/* ProCalc identity + mobile header cleanup */
+.brand-logo{display:block;width:38px;height:38px;object-fit:contain;flex:0 0 auto;border-radius:10px;filter:drop-shadow(0 5px 12px #795fff30)}
+.side-brand .brand-logo{width:32px;height:32px}
+.login-logo .brand-logo{width:52px;height:52px}
+.footer .brand-logo{width:28px;height:28px}
+@media(max-width:700px){
+  /* Keep one brand mark in the mobile workspace header. */
+  body[data-view="calculator"] .side-brand{display:none!important}
+  body[data-view="calculator"] .side-panel{justify-content:flex-end;min-height:58px}
+  body[data-view="calculator"] .side-bottom{width:100%;justify-content:flex-start}
+  body[data-view="calculator"] .logout-btn{display:none!important}
+  body[data-view="calculator"] .profile{padding:0;max-width:100%;overflow:hidden}
+  body[data-view="calculator"] .profile>div:last-child{min-width:0}
+  body[data-view="calculator"] .profile small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100vw - 95px)}
+  body[data-view="calculator"] .topbar .brand-logo{width:36px;height:36px}
+}

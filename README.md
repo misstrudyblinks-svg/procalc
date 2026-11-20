@@ -1,39 +1,34 @@
-# ProCalc — Smart Calculator (Firebase Edition)
+# ProCalc — Firebase Edition (Phase 2)
 
-A responsive calculator assignment with a landing page, Firebase email/password authentication, a calculator workspace, and Firestore-backed personal calculation history.
+A polished calculator web app built with HTML, CSS, and JavaScript modules using Firebase Authentication and Cloud Firestore.
 
+## New in Phase 2
+- Personal profile modal with editable display name
+- Password-reset email using Firebase Authentication
+- Scientific calculator mode: sin, cos, tan, square root, log, ln, powers, pi and e
+- Toggle radians/degrees for trigonometric functions
+- Statistics cards for total saved calculations and operator activity
+- Scientific buttons are hidden until Scientific mode is enabled
+- Responsive styling and modal/key animations
 
-## Firebase setup before running
-1. Open the Firebase Console for project **prohcul**.
-2. In **Authentication → Sign-in method**, enable **Email/Password**.
-3. Create/enable **Firestore Database** (choose a location; this cannot be changed later).
-4. Open Firestore **Rules**, replace the rules with the contents of `firestore.rules`, and publish.
-5. For local testing, run this folder from a local web server (ES modules/CDN imports do not work reliably from `file://`). In VS Code, use Live Server and open its localhost URL. You can also deploy the static files to Firebase Hosting.
+## Setup
+1. Open the Firebase project `prohcul` in the Firebase Console.
+2. Ensure Email/Password is enabled in Authentication → Sign-in method.
+3. Create Cloud Firestore if it is not already enabled.
+4. Publish the included `firestore.rules`.
+5. Open this folder in VS Code and launch `index.html` with Live Server. Do not open the file directly with `file://`, because Firebase ES modules need a local HTTP server.
 
+## Scientific mode quick tests
+- `2+3*4` → `14`
+- `sqrt(81)` → `9`
+- `sin(pi/2)` in RAD → `1`
+- `sin(30)` in DEG → `0.5`
+- `log(100)` → `2`
+- `2^3^2` → `512` (power is right-associative)
+- `2pi` → `6.28318530718`
 
-## Run it
-- Extract the project folder.
-- Serve `index.html` using VS Code Live Server or Firebase Hosting.
-- Click **Get started** to register a new account, or **Sign in** for an existing account.
-- Users can create accounts with email and password; passwords are managed only by Firebase Authentication, not stored in Firestore.
+## Firebase data layout
+- `users/{uid}`: profile fields and timestamps
+- `users/{uid}/calculations/{calculationId}`: expression, result, createdAt
 
-
-## Firebase services used
-- Firebase Authentication: account creation, sign in, session persistence, sign out.
-- Cloud Firestore: user profile document `users/{uid}` and personal calculation history `users/{uid}/calculations/{calculationId}`.
-
-
-## Features
-- Animated landing/login/dashboard interface
-- Email/password signup and sign-in, display name on signup
-- Firebase session state restores the user's signed-in workspace
-- Personal calculation history saved to Firestore and restored after sign-in
-- Clear history removes that user's stored calculation documents
-- Arithmetic parser (no `eval`), decimals, parentheses, unary sign, percent, keyboard support
-- Responsive design and copy-result action
-
-
-## Security notes
-- Firebase Web API configuration is client-side by design. Protect the database with the included Firestore Security Rules.
-- The rules allow a signed-in user to read/write only their own profile and calculation subcollection. Passwords are never written to Firestore.
-- This is a student/demo app, not a production-reviewed security product. Add rate limits, validation, and abuse controls before public use.
+Passwords are handled by Firebase Authentication and are not written to Firestore.
